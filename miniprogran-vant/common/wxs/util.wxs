@@ -1,0 +1,33 @@
+var format = {
+  /**
+   * 数字保留小数位转换
+   * @param _number 待转换数字
+   * @param count 小数点保留位数，默认保留两位
+   */
+  toFixed: function (_number, count) {
+    if (_number === null || isNaN(_number)) {
+      return _number;
+    } else {
+      // 判断小数点是否存储，且小数点后数字超过3位
+      var _numArray = (''+_number).split('.');
+      if (_numArray.length == 1 || (_numArray.length > 1 && _numArray[1].length <= count)) {
+        // 没有小数点
+        return _number;
+      } else {
+        if (typeof _number === 'number') {
+          return _number.toFixed(count);
+        } else if (typeof val === 'string') {
+          _number = parseFloat(_number);
+          if (!isNaN(_number)) {
+            return _number.toFixed(count)
+          }
+        }
+      }
+      return _number;
+    }
+  }
+}
+
+module.exports = {
+  NumberToFixed: format.toFixed
+}
